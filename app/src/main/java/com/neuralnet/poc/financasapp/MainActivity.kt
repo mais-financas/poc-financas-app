@@ -19,7 +19,9 @@ import androidx.navigation.compose.rememberNavController
 import com.neuralnet.poc.financasapp.ui.navigation.FinancasBottomBar
 import com.neuralnet.poc.financasapp.ui.navigation.FinancasNavHost
 import com.neuralnet.poc.financasapp.ui.theme.PoCFinançasTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
