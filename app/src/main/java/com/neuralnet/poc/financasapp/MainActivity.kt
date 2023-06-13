@@ -5,12 +5,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.neuralnet.poc.financasapp.ui.navigation.FinancasBottomBar
+import com.neuralnet.poc.financasapp.ui.navigation.FinancasNavHost
 import com.neuralnet.poc.financasapp.ui.theme.PoCFinançasTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,15 +31,19 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun PocFinancasApp(modifier: Modifier = Modifier) {
+    val navController = rememberNavController()
+
     PoCFinançasTheme {
-        Surface(
+        Scaffold(
+            bottomBar = { FinancasBottomBar(navController = navController) },
             modifier = modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            Greeting("Android")
+        ) { paddingValues ->
+            FinancasNavHost(
+                navController = navController,
+                modifier = Modifier.padding(paddingValues)
+            )
         }
     }
-
 }
 
 @Composable
