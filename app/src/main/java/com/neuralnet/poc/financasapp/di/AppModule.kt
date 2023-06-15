@@ -2,6 +2,8 @@ package com.neuralnet.poc.financasapp.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.neuralnet.poc.financasapp.data.network.BASE_URL
+import com.neuralnet.poc.financasapp.data.network.BOTPRESS_BASE_URL
+import com.neuralnet.poc.financasapp.data.network.BotpressApi
 import com.neuralnet.poc.financasapp.data.network.PocFinancasApi
 import dagger.Module
 import dagger.Provides
@@ -26,4 +28,17 @@ object AppModule {
             .build()
             .create(PocFinancasApi::class.java)
 
+    @Singleton
+    @Provides
+    fun provideBotpressApi(): BotpressApi {
+        val json = Json { ignoreUnknownKeys = true }
+
+        return Retrofit.Builder()
+            .baseUrl(BOTPRESS_BASE_URL)
+            .addConverterFactory(
+                json.asConverterFactory("application/json".toMediaType())
+            )
+            .build()
+            .create(BotpressApi::class.java)
+    }
 }

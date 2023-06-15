@@ -21,6 +21,9 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField("String", "BOTPRESS_ACCESS_TOKEN", BOTPRESS_ACCESS_TOKEN)
+        buildConfigField("String", "BOT_ID", BOT_ID)
     }
 
     buildTypes {
@@ -38,6 +41,7 @@ android {
     }
     buildFeatures {
         compose true
+        buildConfig true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.4.7'

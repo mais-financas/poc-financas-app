@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.neuralnet.poc.financasapp.ui.screens.chatbot.ChatBotScreen
+import com.neuralnet.poc.financasapp.ui.screens.chatbot.ChatbotViewModel
 import com.neuralnet.poc.financasapp.ui.screens.goals.FinancialGoalsScreen
 import com.neuralnet.poc.financasapp.ui.screens.home.HomeScreen
 import com.neuralnet.poc.financasapp.ui.screens.home.HomeViewModel
@@ -24,7 +25,8 @@ fun FinancasNavHost(navController: NavHostController, modifier: Modifier = Modif
         }
 
         composable(Screen.ChatBot.route) {
-            ChatBotScreen()
+            val chatBotViewModel: ChatbotViewModel = hiltViewModel()
+            ChatBotScreen(chatBotViewModel)
         }
 
         composable(Screen.FinancialGoals.route) {
