@@ -16,7 +16,7 @@ import com.neuralnet.poc.financasapp.ui.screens.home.HomeViewModel
 fun FinancasNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
     NavHost(
         navController = navController,
-        startDestination = Screen.ChatBot.route,
+        startDestination = Screen.Home.route,
         modifier = modifier
     ) {
         composable(Screen.Home.route) {

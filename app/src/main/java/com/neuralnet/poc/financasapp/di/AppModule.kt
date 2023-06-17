@@ -18,27 +18,25 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+    private val json = Json { ignoreUnknownKeys = true }
+
     @Singleton
     @Provides
     fun provideFinancasApi(): PocFinancasApi = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(
-                Json.asConverterFactory("application/json".toMediaType())
-            )
-            .build()
-            .create(PocFinancasApi::class.java)
+        .baseUrl(BASE_URL)
+        .addConverterFactory(
+            json.asConverterFactory("application/json".toMediaType())
+        )
+        .build()
+        .create(PocFinancasApi::class.java)
 
     @Singleton
     @Provides
-    fun provideBotpressApi(): BotpressApi {
-        val json = Json { ignoreUnknownKeys = true }
-
-        return Retrofit.Builder()
-            .baseUrl(BOTPRESS_BASE_URL)
-            .addConverterFactory(
-                json.asConverterFactory("application/json".toMediaType())
-            )
-            .build()
-            .create(BotpressApi::class.java)
-    }
+    fun provideBotpressApi(): BotpressApi = Retrofit.Builder()
+        .baseUrl(BOTPRESS_BASE_URL)
+        .addConverterFactory(
+            json.asConverterFactory("application/json".toMediaType())
+        )
+        .build()
+        .create(BotpressApi::class.java)
 }
